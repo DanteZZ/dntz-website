@@ -1,0 +1,10 @@
+<template>
+  <pre class="light:text-red-600 text-shadow-xl">
+██████<span class="text-primary light:text-gray-500">╗</span> ███<span class="text-primary light:text-gray-500">╗</span>   ██<span class="text-primary light:text-gray-500">╗</span>████████<span class="text-primary light:text-gray-500">╗</span>███████<span class="text-primary light:text-gray-500">╗</span>
+██<span class="text-primary light:text-gray-500">╔══</span>██<span class="text-primary light:text-gray-500">╗</span>████<span class="text-primary light:text-gray-500">╗</span>  ██<span class="text-primary light:text-gray-500">║╚══</span>██<span class="text-primary light:text-gray-500">╔══╝╚══</span>███<span class="text-primary light:text-gray-500">╔╝</span>
+██<span class="text-primary light:text-gray-500">║</span>  ██<span class="text-primary light:text-gray-500">║</span>██<span class="text-primary light:text-gray-500">╔</span>██<span class="text-primary light:text-gray-500">╗</span> ██<span class="text-primary light:text-gray-500">║</span>   ██<span class="text-primary light:text-gray-500">║</span>     ███<span class="text-primary light:text-gray-500">╔╝</span> 
+██<span class="text-primary light:text-gray-500">║</span>  ██<span class="text-primary light:text-gray-500">║</span>██<span class="text-primary light:text-gray-500">║╚</span>██<span class="text-primary light:text-gray-500">╗</span>██<span class="text-primary light:text-gray-500">║</span>   ██<span class="text-primary light:text-gray-500">║</span>    ███<span class="text-primary light:text-gray-500">╔╝</span>  
+██████<span class="text-primary light:text-gray-500">╔╝</span>██<span class="text-primary light:text-gray-500">║ ╚</span>████<span class="text-primary light:text-gray-500">║</span>   ██<span class="text-primary light:text-gray-500">║</span>   ███████<span class="text-primary light:text-gray-500">╗</span>
+<span class="text-primary light:text-gray-500">╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝</span></pre>
+</template>
+<script lang="ts" setup></script>

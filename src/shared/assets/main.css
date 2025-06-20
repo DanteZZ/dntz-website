@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@custom-variant light (&:where(.light, .light *));
+
+@theme {
+  --color-primary: var(--color-red-500);
+}
+
+:root {
+  --font-sans: 'Ubuntu Mono', monospace;
+  --background-global: var(--color-gray-800);
+  --text-base-color: var(--color-gray-100);
+}
+
+.light {
+  --background-global: var(--color-gray-100);
+  --text-base-color: var(--color-gray-700);
+}
+
+html {
+  background-color: var(--background-global);
+  color: var(--text-base-color);
+  transition: 0.2s;
+}
+
+@media print {
+  a[href]:after {
+    content: none;
+  }
+  @page {
+    margin: 2rem;
+  }
+}
