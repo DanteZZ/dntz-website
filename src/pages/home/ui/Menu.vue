@@ -19,8 +19,9 @@
 
   const links = ref([
     // { label: 'Обо мне', to: '/about' },
-    // { label: 'Мои проекты', to: '/projects' },
+
     // { label: 'Библиотеки', to: '/libs' },
     { label: 'Curriculum Vitae', to: '/cv' },
+    { label: 'Проекты', to: '/projects' },
   ]);
 </script>

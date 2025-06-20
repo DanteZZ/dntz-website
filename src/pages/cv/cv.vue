@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-3 grid grid-cols-1 gap-16 lg:py-12 lg:grid-cols-[256px_auto] print:text-[13px] print:!p-0"
+    class="p-3 grid grid-cols-1 gap-16 lg:grid-cols-[256px_auto] print:text-[13px] print:!p-0"
   >
     <Bio
       class="hidden lg:block"
@@ -184,7 +184,7 @@
       >
         <div
           v-for="(project, idx) in projects"
-          class="transition-size break-inside-avoid"
+          class="transition-size"
           :class="{
             'lg:col-span-2': openedProject === idx,
           }"

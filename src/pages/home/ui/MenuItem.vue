@@ -9,6 +9,7 @@
   </div>
   <div v-if="props.margin" class="w-full flex justify-between">
     <span>║</span>
+    <span>—</span>
     <span>║</span>
   </div>
 </template>
