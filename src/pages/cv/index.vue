@@ -1,13 +1,13 @@
 <template>
   <div
-    class="grid grid-cols-[256px_auto] print:grid-cols-1 gap-16 py-12 print:text-[13px] print:!py-0"
+    class="p-3 grid grid-cols-1 gap-16 lg:py-12 lg:grid-cols-[256px_auto] print:text-[13px] print:!p-0"
   >
     <Bio
-      class="print:hidden"
+      class="hidden lg:block"
       :hr-mode="hrMode"
       @toggle-hr-mode="toggleHrMode"
     />
-    <div class="print:hidden" />
+    <div class="hidden lg:block" />
     <div>
       <Shadow>
         <Heading class="text-3xl !text-gray-300 light:!text-gray-700">
@@ -16,11 +16,7 @@
       </Shadow>
       <Divider />
 
-      <Bio
-        class="hidden print:block"
-        :hr-mode="hrMode"
-        @toggle-hr-mode="toggleHrMode"
-      />
+      <Bio class="lg:hidden" :hr-mode="hrMode" @toggle-hr-mode="toggleHrMode" />
       <Shadow>
         <Heading h="2" :class="{ '!text-gray-700 print:!text-xl': hrMode }">
           Обо мне
@@ -47,7 +43,7 @@
             Технологический стек
           </Heading>
 
-          <div class="grid grid-cols-2 gap-12 gap-y-0">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 gap-y-0">
             <div>
               <div v-for="stack in stacks.filter((n, i) => i % 2 === 0)">
                 <div
@@ -145,7 +141,7 @@
         <Heading h="2" :class="{ '!text-gray-700 print:!text-xl': hrMode }">
           Профессиональные навыки
         </Heading>
-        <div class="grid grid-cols-2 gap-12 gap-y-0 mb-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 gap-y-0 mb-10">
           <div>
             <div class="text-lg font-semibold leading-8 print:!text-base">
               HardSkills
@@ -183,18 +179,20 @@
         </Paragraph>
       </Shadow>
       <div
-        class="grid grid-cols-2 grid-2 gap-12 gap-y-6"
+        class="grid grid-cols-1 lg:grid-cols-2 grid-2 gap-12 gap-y-6"
         :class="{ '!grid-cols-1 !gap-0': hrMode, group: !hrMode }"
       >
         <div
           v-for="(project, idx) in projects"
           class="transition-size break-inside-avoid"
           :class="{
-            'col-span-2': openedProject === idx,
+            'lg:col-span-2': openedProject === idx,
           }"
           :style="{
             'grid-row-start':
-              openedProject === idx + 1 && openedProject % 2 === 1
+              $viewport.isGreaterOrEquals('lg') &&
+              openedProject === idx + 1 &&
+              openedProject % 2 === 1
                 ? Math.ceil(openedProject / 2) + 1
                 : 'auto',
           }"
@@ -300,6 +298,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+  import { useHead } from '#app';
   import Divider from '~/shared/ui/Divider.vue';
   import Heading from '~/shared/ui/Heading.vue';
   import Paragraph from '~/shared/ui/Paragraph.vue';
@@ -310,10 +309,22 @@
   import { projects } from '~/shared/data/projects';
   import Tooltip from '~/shared/ui/Tooltip.vue';
   import { skills } from '~/shared/data/skills';
-  import { ref, watch } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import { useTheme } from '~/shared/composables';
   import Bio from './ui/Bio.vue';
+
+  const currentDate = computed(() =>
+    new Date().toLocaleDateString('ru-RU', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })
+  );
+
+  useHead({
+    title: `CV - Maxim Trofimov ${currentDate.value}`,
+  });
 
   const { isLight } = useTheme();
 

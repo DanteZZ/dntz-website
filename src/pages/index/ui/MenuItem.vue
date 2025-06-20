@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex justify-between">
     <span>║</span>
-    <div class="text-gray-50">
+    <div class="text-gray-50 light:text-gray-900">
       <slot />
     </div>
 

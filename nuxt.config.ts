@@ -4,17 +4,28 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   srcDir: './src',
+
   imports: {
     autoImport: false,
   },
+
   devtools: { enabled: true },
+
   devServer: {
     port: 5174,
   },
+
   css: ['~/shared/assets/main.css'],
   app: {
     head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
       link: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/favicon.ico',
+        },
         {
           rel: 'preconnect',
           href: 'https://fonts.googleapis.com',
@@ -39,6 +50,19 @@ export default defineNuxtConfig({
           additionalData: '@use "~/shared/assets/_variables.scss" as *;',
         },
       },
+    },
+  },
+
+  modules: ['nuxt-viewport'],
+  viewport: {
+    breakpoints: {
+      xxs: 320,
+      xs: 370,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      '2xl': 1536,
     },
   },
 });
