@@ -17,7 +17,7 @@
         }
       "
     >
-      <slot />
+      <slot :opened="opened || props.alwaysOpened" />
 
       <div
         v-if="!opened && !props.alwaysOpened"

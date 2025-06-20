@@ -174,12 +174,12 @@
           Коммерческие проекты
         </Heading>
         <Paragraph>
-          ** - Названия и некоторые детали проектов я не имею права разглашать в
-          связи с NDA.
+          <span class="opacity-50 ml-1">**</span> - Названия и некоторые детали
+          проектов я не имею права разглашать в связи с NDA.
         </Paragraph>
       </Shadow>
       <div
-        class="grid grid-cols-1 lg:grid-cols-2 grid-2 gap-12 gap-y-6"
+        class="grid grid-cols-1 lg:grid-cols-2 gap-12 gap-y-6"
         :class="{ '!grid-cols-1 !gap-0': hrMode, group: !hrMode }"
       >
         <div
@@ -197,9 +197,9 @@
                 : 'auto',
           }"
         >
-          <Divider double class="!mb-1" :class="{ '!mb-2': hrMode }">
+          <!-- <Divider double class="!mb-1" :class="{ '!mb-2': hrMode }">
             [ {{ project.period[0] }} - {{ project.period[1] }} ]
-          </Divider>
+          </Divider> -->
           <Spoiler
             ref="projectSpoilers"
             full
@@ -207,90 +207,97 @@
             :always-opened="hrMode"
             :none="hrMode"
           >
-            <Shadow
-              class="relative"
-              :class="{
-                'transition-opacity group-hover:opacity-65 hover:!opacity-100':
-                  idx !== openedProject,
-              }"
-            >
-              <div
-                class="text-lg font-semibold mb-2 leading-5"
-                :class="{ '!text-xl print:!text-[1rem]': hrMode }"
-              >
-                {{ project.title
-                }}<span v-if="project.nda" class="opacity-50 ml-1">**</span>
-              </div>
-
-              <p v-if="project.description" class="mb-3">
-                {{ project.description }}
-              </p>
-
-              <p
-                class="text-sky-500 mb-1"
+            <template #default="{ opened }">
+              <Shadow
+                class="relative"
                 :class="{
-                  '!text-gray-700 underline underline-offset-3': hrMode,
+                  'transition-opacity group-hover:opacity-65 hover:!opacity-100':
+                    idx !== openedProject,
                 }"
               >
-                {{ hrMode ? 'Мой вклад:' : '[ Мой вклад ]' }}
-              </p>
-              <p
-                v-for="contrib in project.contribution"
-                class="mb-1 print:mb-0"
-              >
-                <template v-if="!hrMode">
-                  [<span class="text-green-500">+</span>]
-                </template>
-                <span v-else class="mr-2">•</span>
-                {{ contrib }}
-              </p>
+                <div
+                  class="text-lg font-semibold mb-0 leading-5"
+                  :class="{ '!text-xl mb-1 print:!text-[1rem]': hrMode }"
+                >
+                  {{ project.title
+                  }}<span v-if="project.nda" class="opacity-50 ml-1">**</span>
+                </div>
+                <div
+                  class="text-sm mb-2 text-sky-300 light:text-sky-600 print:!text-gray-300"
+                >
+                  [ {{ project.period[0] }} - {{ project.period[1] }} ]
+                </div>
 
-              <template v-if="project.achievments?.length">
+                <p v-if="project.description" class="mb-3">
+                  {{ project.description }}
+                </p>
                 <p
+                  v-if="opened"
                   class="text-sky-500 mb-1"
                   :class="{
                     '!text-gray-700 underline underline-offset-3': hrMode,
                   }"
                 >
-                  {{ hrMode ? 'Достижения:' : '[ Достижения ]' }}
+                  {{ hrMode ? 'Мой вклад:' : '[ Мой вклад ]' }}
                 </p>
                 <p
-                  v-for="achievment in project.achievments"
+                  v-for="contrib in project.contribution"
                   class="mb-1 print:mb-0"
                 >
                   <template v-if="!hrMode">
-                    [<span class="text-green-500">↑</span>]
+                    [<span class="text-green-500">+</span>]
                   </template>
                   <span v-else class="mr-2">•</span>
-                  {{ achievment }}
+                  {{ contrib }}
                 </p>
-              </template>
 
-              <p
-                class="text-sky-500 mb-1 mt-3"
-                :class="{
-                  '!text-gray-700 underline underline-offset-3': hrMode,
-                }"
-              >
-                {{ hrMode ? 'Методология:' : '[ Методология ]' }}
-              </p>
-              <p class="mb-3">
-                {{ project.methodology }}
-              </p>
+                <template v-if="project.achievments?.length">
+                  <p
+                    class="text-sky-500 mb-1"
+                    :class="{
+                      '!text-gray-700 underline underline-offset-3': hrMode,
+                    }"
+                  >
+                    {{ hrMode ? 'Достижения:' : '[ Достижения ]' }}
+                  </p>
+                  <p
+                    v-for="achievment in project.achievments"
+                    class="mb-1 print:mb-0"
+                  >
+                    <template v-if="!hrMode">
+                      [<span class="text-green-500">↑</span>]
+                    </template>
+                    <span v-else class="mr-2">•</span>
+                    {{ achievment }}
+                  </p>
+                </template>
 
-              <p
-                class="text-sky-500 mb-1 mt-3"
-                :class="{
-                  '!text-gray-700 underline underline-offset-3': hrMode,
-                }"
-              >
-                {{ hrMode ? 'Архитектура:' : '[ Архитектура ]' }}
-              </p>
+                <p
+                  class="text-sky-500 mb-1 mt-3"
+                  :class="{
+                    '!text-gray-700 underline underline-offset-3': hrMode,
+                  }"
+                >
+                  {{ hrMode ? 'Методология:' : '[ Методология ]' }}
+                </p>
+                <p class="mb-3">
+                  {{ project.methodology }}
+                </p>
 
-              <p class="mb-3">
-                {{ project.architecture }}
-              </p>
-            </Shadow>
+                <p
+                  class="text-sky-500 mb-1 mt-3"
+                  :class="{
+                    '!text-gray-700 underline underline-offset-3': hrMode,
+                  }"
+                >
+                  {{ hrMode ? 'Архитектура:' : '[ Архитектура ]' }}
+                </p>
+
+                <p class="mb-3">
+                  {{ project.architecture }}
+                </p>
+              </Shadow>
+            </template>
           </Spoiler>
         </div>
       </div>

@@ -55,6 +55,7 @@
 
 <script lang="ts" setup>
   import Divider from '~/shared/ui/Divider.vue';
+  import Shadow from '~/shared/ui/Shadow.vue';
 
   const props = defineProps<{
     hrMode?: boolean;
