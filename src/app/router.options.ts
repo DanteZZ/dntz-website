@@ -17,11 +17,19 @@ export default {
       },
     },
     {
-      name: 'projects',
-      path: '/projects',
-      component: () => import('~/pages/projects/index.vue'),
+      name: 'libraries',
+      path: '/libraries',
+      component: () => import('~/pages/libraries/index.vue'),
       meta: {
-        name: 'Проекты',
+        name: 'Библиотеки',
+      },
+    },
+    {
+      name: 'pets',
+      path: '/pets',
+      component: () => import('~/pages/pets/index.vue'),
+      meta: {
+        name: 'Pet-проекты',
       },
     },
   ],

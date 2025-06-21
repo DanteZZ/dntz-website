@@ -18,10 +18,8 @@
   import MenuWrapper from './MenuWrapper.vue';
 
   const links = ref([
-    // { label: 'Обо мне', to: '/about' },
-
-    // { label: 'Библиотеки', to: '/libs' },
     { label: 'Curriculum Vitae', to: '/cv' },
-    { label: 'Проекты', to: '/projects' },
+    { label: 'Библиотеки', to: '/libraries' },
+    { label: 'Pet-проекты', to: '/pets' },
   ]);
 </script>
