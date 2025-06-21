@@ -6,12 +6,12 @@ export default {
     {
       name: 'home',
       path: '/',
-      component: () => import('~/pages/home/home.vue'),
+      component: () => import('~/pages/home/index.vue'),
     },
     {
       name: 'cv',
       path: '/cv',
-      component: () => import('~/pages/cv/cv.vue'),
+      component: () => import('~/pages/cv/index.vue'),
       meta: {
         name: 'Curriculum Vitae',
       },
@@ -19,7 +19,7 @@ export default {
     {
       name: 'projects',
       path: '/projects',
-      component: () => import('~/pages/projects/projects.vue'),
+      component: () => import('~/pages/projects/index.vue'),
       meta: {
         name: 'Проекты',
       },
