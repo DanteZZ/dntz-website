@@ -224,6 +224,7 @@
                 </div>
                 <div
                   class="text-sm mb-2 text-sky-300 light:text-sky-600 print:!text-gray-300"
+                  :class="{ '!text-gray-500': hrMode }"
                 >
                   [ {{ project.period[0] }} - {{ project.period[1] }} ]
                 </div>
@@ -235,7 +236,8 @@
                   v-if="opened"
                   class="text-sky-500 mb-1"
                   :class="{
-                    '!text-gray-700 underline underline-offset-3': hrMode,
+                    '!text-gray-700 underline underline-offset-3 font-semibold':
+                      hrMode,
                   }"
                 >
                   {{ hrMode ? 'Мой вклад:' : '[ Мой вклад ]' }}
@@ -255,7 +257,8 @@
                   <p
                     class="text-sky-500 mb-1"
                     :class="{
-                      '!text-gray-700 underline underline-offset-3': hrMode,
+                      '!text-gray-700 underline underline-offset-3 font-semibold':
+                        hrMode,
                     }"
                   >
                     {{ hrMode ? 'Достижения:' : '[ Достижения ]' }}
@@ -275,7 +278,8 @@
                 <p
                   class="text-sky-500 mb-1 mt-3"
                   :class="{
-                    '!text-gray-700 underline underline-offset-3': hrMode,
+                    '!text-gray-700 underline underline-offset-3 font-semibold':
+                      hrMode,
                   }"
                 >
                   {{ hrMode ? 'Методология:' : '[ Методология ]' }}
@@ -287,7 +291,8 @@
                 <p
                   class="text-sky-500 mb-1 mt-3"
                   :class="{
-                    '!text-gray-700 underline underline-offset-3': hrMode,
+                    '!text-gray-700 underline underline-offset-3 font-semibold':
+                      hrMode,
                   }"
                 >
                   {{ hrMode ? 'Архитектура:' : '[ Архитектура ]' }}
@@ -316,7 +321,7 @@
   import { projects } from '~/shared/data/projects';
   import Tooltip from '~/shared/ui/Tooltip.vue';
   import { skills } from '~/shared/data/skills';
-  import { computed, ref, watch } from 'vue';
+  import { computed, onBeforeUnmount, onUnmounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import { useTheme } from '~/shared/composables';
   import Bio from './ui/Bio.vue';
@@ -377,4 +382,11 @@
     },
     { immediate: true }
   );
+
+  onBeforeUnmount(() => {
+    if (hrMode.value) {
+      hrMode.value = false;
+      isLight.value = false;
+    }
+  });
 </script>
