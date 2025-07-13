@@ -45,7 +45,7 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 gap-y-0">
             <div>
-              <div v-for="stack in stacks.filter((n, i) => i % 2 === 0)">
+              <div v-for="stack in stacks[0]">
                 <div
                   class="text-lg font-semibold mb-2 print:!text-base print:mb-0"
                 >
@@ -54,8 +54,8 @@
                 <Paragraph class="block">
                   <template v-for="(item, idx) in stack.items">
                     <component
-                      :is="item.notion ? Tooltip : 'span'"
-                      :text="item.notion"
+                      :is="item?.notion ? Tooltip : 'span'"
+                      :text="item?.notion"
                     >
                       <a
                         :href="item.link || '#'"
@@ -90,7 +90,7 @@
               </div>
             </div>
             <div>
-              <div v-for="stack in stacks.filter((n, i) => i % 2 !== 0)">
+              <div v-for="stack in stacks[1]">
                 <div
                   class="text-lg font-semibold mb-2 print:!text-base print:mb-0"
                 >

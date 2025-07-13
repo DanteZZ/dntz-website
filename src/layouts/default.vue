@@ -2,7 +2,7 @@
   <div class="flex items-center flex-col pt-12 print:pt-0">
     <div
       v-if="route.name !== 'home'"
-      class="z-50 fixed top-0 left-0 bg-(--background-global)/50 backdrop-blur-md w-full p-3 whitespace-nowrap"
+      class="z-50 fixed top-0 left-0 bg-(--background-global)/50 backdrop-blur-md w-full p-3 whitespace-nowrap print:hidden"
     >
       <Shadow class="flex justify-between drop-shadow-md/90">
         <RouterLink

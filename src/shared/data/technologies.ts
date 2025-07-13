@@ -1,0 +1,551 @@
+import { ref } from 'vue';
+
+export const categories = [
+  { key: 'lang', label: 'Languages' },
+  { key: 'syntax', label: 'Syntax & Preprocessors' },
+  { key: 'framework', label: 'Frameworks' },
+  { key: 'platform', label: 'Platforms' },
+  { key: 'ui', label: 'UI Libraries' },
+  { key: 'build', label: 'Build Tools' },
+  { key: 'testing', label: 'Testing' },
+  { key: 'state', label: 'State Management' },
+  { key: 'validation', label: 'Validation' },
+  { key: 'api', label: 'API & Utils' },
+  { key: 'map', label: 'Map & GIS' },
+  { key: 'cms', label: 'CMS' },
+  { key: 'crm', label: 'CRM' },
+  { key: 'billing', label: 'Billing Systems' },
+] as const;
+
+export type Category = (typeof categories)[number];
+export type CategoryKey = Category['key'];
+
+export const technologies = [
+  // LANGUAGES
+  {
+    key: 'js',
+    label: 'JavaScript',
+    link: 'https://developer.mozilla.org/docs/Web/JavaScript',
+    category: 'lang',
+    notion: '',
+  },
+  {
+    key: 'ts',
+    label: 'TypeScript',
+    link: 'https://www.typescriptlang.org/',
+    category: 'lang',
+    notion: '',
+  },
+  {
+    key: 'php',
+    label: 'PHP',
+    link: 'https://www.php.net/',
+    category: 'lang',
+    notion: '',
+  },
+  {
+    key: 'java',
+    label: 'Java',
+    link: 'https://www.java.com/',
+    category: 'lang',
+    notion: 'Плагины Spigot, расширения под WebView',
+  },
+  {
+    key: 'sql',
+    label: 'SQL',
+    link: 'https://en.wikipedia.org/wiki/SQL',
+    category: 'lang',
+    notion: '',
+  },
+  {
+    key: 'graphql',
+    label: 'GraphQL',
+    link: 'https://graphql.org/',
+    category: 'lang',
+    notion: '',
+  },
+
+  // SYNTAX & PREPROCESSORS
+  {
+    key: 'html',
+    label: 'HTML5',
+    link: 'https://developer.mozilla.org/docs/Web/HTML',
+    category: 'syntax',
+    notion: '',
+  },
+  {
+    key: 'css',
+    label: 'CSS3',
+    category: 'syntax',
+    link: 'https://developer.mozilla.org/docs/Web/CSS',
+    notion: '',
+  },
+  {
+    key: 'scss',
+    label: 'SCSS',
+    category: 'syntax',
+    link: 'https://sass-lang.com/',
+    notion: '',
+  },
+  {
+    key: 'sass',
+    label: 'SASS',
+    category: 'syntax',
+    link: 'https://sass-lang.com/documentation/syntax#the-indented-syntax',
+    notion: '',
+  },
+  {
+    key: 'less',
+    label: 'Less',
+    category: 'syntax',
+    link: 'https://lesscss.org/',
+    notion: '',
+  },
+  {
+    key: 'postcss',
+    label: 'PostCSS',
+    category: 'syntax',
+    link: 'https://postcss.org/',
+    notion: '',
+  },
+  {
+    key: 'jsx',
+    label: 'JSX',
+    category: 'syntax',
+    link: 'https://react.dev/docs/introducing-jsx',
+    notion: '',
+  },
+  {
+    key: 'tsx',
+    label: 'TSX',
+    category: 'syntax',
+    link: 'https://www.typescriptlang.org/docs/handbook/jsx.html',
+    notion: '',
+  },
+  {
+    key: 'sfc',
+    label: 'Vue SFC',
+    category: 'syntax',
+    link: 'https://vuejs.org/guide/scaling-up/sfc.html',
+    notion: '',
+  },
+  {
+    key: 'jss',
+    label: 'JSS (CSS-in-JS)',
+    category: 'syntax',
+    link: 'https://cssinjs.org/',
+    notion: '',
+  },
+  {
+    key: 'emotion',
+    label: 'Emotion',
+    category: 'syntax',
+    link: 'https://emotion.sh/docs/introduction',
+    notion: '',
+  },
+  {
+    key: 'jinja2',
+    label: 'Jinja2',
+    link: 'https://jinja.palletsprojects.com/',
+    category: 'syntax',
+    notion: '',
+  },
+  {
+    key: 'nunjucks',
+    label: 'Nunjucks',
+    link: 'https://mozilla.github.io/nunjucks/',
+    category: 'syntax',
+    notion: '',
+  },
+  {
+    key: 'modules',
+    label: 'CommonJS / ESM / UMD',
+    link: 'https://nodejs.org/',
+    category: 'syntax',
+    notion: 'Создание библиотек, плагинов и CLI',
+  },
+  {
+    key: 'md',
+    label: 'Markdown',
+    category: 'syntax',
+    link: 'https://www.markdownguide.org/',
+    notion: '',
+  },
+  {
+    key: 'mdx',
+    label: 'MDX',
+    category: 'syntax',
+    link: 'https://mdxjs.com/',
+    notion: '',
+  },
+
+  // FRAMEWORKS
+  {
+    key: 'vue2',
+    label: 'Vue 2',
+    link: 'https://v2.vuejs.org/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'vue3',
+    label: 'Vue 3',
+    link: 'https://vuejs.org/',
+    category: 'framework',
+    notion: 'Основной фреймворк',
+  },
+  {
+    key: 'react',
+    label: 'React',
+    link: 'https://react.dev/',
+    category: 'framework',
+    notion: 'Middle уровень',
+  },
+  {
+    key: 'nuxt2',
+    label: 'Nuxt 2',
+    link: 'https://v2.nuxt.com/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'nuxt3',
+    label: 'Nuxt 3',
+    link: 'https://nuxt.com/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'quasar',
+    label: 'Quasar',
+    link: 'https://quasar.dev/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'nest',
+    label: 'NestJS',
+    link: 'https://nestjs.com/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'strapi',
+    label: 'Strapi',
+    link: 'https://strapi.io/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'three',
+    label: 'Three.js',
+    link: 'https://threejs.org/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'tres',
+    label: 'Tres.js',
+    link: 'https://tresjs.org/',
+    category: 'framework',
+    notion: '',
+  },
+  {
+    key: 'lite-ssr',
+    label: 'LiteSSR',
+    link: 'https://lssr.dntz.xyz/',
+    category: 'framework',
+    notion: 'Разработал собственную SSR-библиотеку',
+  },
+
+  // PLATFORMS
+  {
+    key: 'cordova',
+    label: 'Apache Cordova',
+    link: 'https://cordova.apache.org/',
+    category: 'platform',
+    notion: '',
+  },
+  {
+    key: 'express',
+    label: 'Express.js',
+    link: 'https://expressjs.com/',
+    category: 'platform',
+    notion: '',
+  },
+  {
+    key: 'nwjs',
+    label: 'NW.js',
+    link: 'https://mwjs.io/',
+    category: 'platform',
+    notion: '',
+  },
+
+  // UI LIBRARIES
+  {
+    key: 'primevue',
+    label: 'PrimeVue',
+    link: 'https://www.primefaces.org/primevue/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'vuetify',
+    label: 'Vuetify',
+    link: 'https://vuetifyjs.com/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'antdv',
+    label: 'Ant Design Vue',
+    link: 'https://antdv.com/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'mui',
+    label: 'Material UI',
+    link: 'https://mui.com/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'bootstrap',
+    label: 'Bootstrap',
+    link: 'https://getbootstrap.com/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'headlessui',
+    label: 'Headless UI',
+    link: 'https://headlessui.com/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'tailwind',
+    label: 'Tailwind CSS',
+    link: 'https://tailwindcss.com/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'fa',
+    label: 'FontAwesome',
+    link: 'https://fontawesome.com/',
+    category: 'ui',
+    notion: '',
+  },
+  {
+    key: 'mdi',
+    label: 'Material Design Icons',
+    link: 'https://materialdesignicons.com/',
+    category: 'ui',
+    notion: '',
+  },
+
+  // BUILD TOOLS
+  {
+    key: 'vite',
+    label: 'Vite',
+    link: 'https://vitejs.dev/',
+    category: 'build',
+    notion: '',
+  },
+  {
+    key: 'webpack',
+    label: 'Webpack',
+    link: 'https://webpack.js.org/',
+    category: 'build',
+    notion: '',
+  },
+  {
+    key: 'rollup',
+    label: 'Rollup',
+    link: 'https://rollupjs.org/',
+    category: 'build',
+    notion: '',
+  },
+  {
+    key: 'esbuild',
+    label: 'esbuild',
+    link: 'https://esbuild.github.io/',
+    category: 'build',
+    notion: '',
+  },
+  {
+    key: 'babel',
+    label: 'Babel',
+    link: 'https://babeljs.io/',
+    category: 'build',
+    notion: '',
+  },
+  {
+    key: 'storybook',
+    label: 'Storybook',
+    link: 'https://storybook.js.org/',
+    category: 'build',
+    notion: '',
+  },
+
+  // TESTING
+  {
+    key: 'vitest',
+    label: 'Vitest',
+    link: 'https://vitest.dev/',
+    category: 'testing',
+    notion: '',
+  },
+  {
+    key: 'jest',
+    label: 'Jest',
+    link: 'https://jestjs.io/',
+    category: 'testing',
+    notion: 'Ограниченный коммерческий опыт',
+  },
+
+  // STATE MANAGEMENT
+  {
+    key: 'pinia',
+    label: 'Pinia',
+    link: 'https://pinia.vuejs.org/',
+    category: 'state',
+    notion: '',
+  },
+  {
+    key: 'vuex',
+    label: 'Vuex',
+    link: 'https://vuex.vuejs.org/',
+    category: 'state',
+    notion: '',
+  },
+  {
+    key: 'redux',
+    label: 'Redux',
+    link: 'https://redux.js.org/',
+    category: 'state',
+    notion: '',
+  },
+
+  // VALIDATION
+  {
+    key: 'zod',
+    label: 'Zod',
+    link: 'https://zod.dev/',
+    category: 'validation',
+    notion: '',
+  },
+  {
+    key: 'vee-validate',
+    label: 'VeeValidate',
+    link: 'https://vee-validate.logaretm.com/',
+    category: 'validation',
+    notion: '',
+  },
+  {
+    key: 'vuelidate',
+    label: 'Vuelidate',
+    link: 'https://vuelidate-next.netlify.app/',
+    category: 'validation',
+    notion: '',
+  },
+
+  // API & UTILITIES
+  {
+    key: 'axios',
+    label: 'Axios',
+    link: 'https://axios-http.com/',
+    category: 'api',
+    notion: '',
+  },
+  {
+    key: 'lodash',
+    label: 'Lodash',
+    link: 'https://lodash.com/',
+    category: 'api',
+    notion: '',
+  },
+  {
+    key: 'jquery',
+    label: 'jQuery',
+    link: 'https://jquery.com/',
+    category: 'api',
+    notion: '',
+  },
+
+  // MAP / GIS
+  {
+    key: 'leaflet',
+    label: 'Leaflet',
+    link: 'https://leafletjs.com/',
+    category: 'map',
+    notion: '',
+  },
+  {
+    key: 'yandexmaps',
+    label: 'Yandex Maps API',
+    link: 'https://yandex.com/dev/maps/',
+    category: 'map',
+    notion: '',
+  },
+
+  // CMS
+  {
+    key: 'wordpress',
+    label: 'WordPress',
+    link: 'https://wordpress.org/',
+    category: 'cms',
+    notion: '',
+  },
+  {
+    key: 'bitrix',
+    label: '1C-Битрикс',
+    link: 'https://www.1c-bitrix.ru/',
+    category: 'cms',
+    notion: '',
+  },
+  {
+    key: 'mobx',
+    label: 'MobX',
+    link: 'https://mobx.js.org/',
+    category: 'cms',
+    notion: 'Редко практикую сейчас',
+  },
+
+  // CRM
+  {
+    key: 'bitrix24',
+    label: 'Битрикс24',
+    link: 'https://www.bitrix24.ru/',
+    category: 'crm',
+    notion: 'Работал, но давно',
+  },
+  {
+    key: 'espocrm',
+    label: 'EspoCRM',
+    link: 'https://www.espocrm.com/',
+    category: 'crm',
+    notion: '',
+  },
+
+  // BILLING
+  {
+    key: 'mikbill',
+    label: 'MikBill',
+    link: 'https://www.mikbill.com/',
+    category: 'billing',
+    notion: '',
+  },
+  {
+    key: 'lanbilling',
+    label: 'LanBilling',
+    link: 'https://lanbilling.ru/',
+    category: 'billing',
+    notion: '',
+  },
+] as const;
+
+export type Technology = (typeof technologies)[number];
+export type TechnologyKey = Technology['key'];
