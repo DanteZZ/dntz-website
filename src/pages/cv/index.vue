@@ -301,6 +301,48 @@
                 <p class="mb-3">
                   {{ project.architecture }}
                 </p>
+
+                <p
+                  v-if="project.technologies"
+                  class="text-sky-500 mb-1 mt-3"
+                  :class="{
+                    '!text-gray-700 underline underline-offset-3 font-semibold':
+                      hrMode,
+                  }"
+                >
+                  {{ hrMode ? 'Технологии:' : '[ Технологии ]' }}
+                </p>
+
+                <p v-if="project.technologies" class="mb-3">
+                  <span
+                    v-for="(item, idx) in getTechnologies(project.technologies)"
+                  >
+                    <a
+                      :href="item.link || '#'"
+                      target="_blank"
+                      class="mr-1 text-gray-500 hover:text-sky-700 transition-colors"
+                    >
+                      <span
+                        v-if="hrMode"
+                        class="text-gray-800 hover:text-sky-600 transition-colors"
+                      >
+                        {{
+                          item.label +
+                          (idx < project.technologies.length - 1 ? ', ' : '')
+                        }}
+                      </span>
+                      <span v-else class="text-nowrap">
+                        {{ '{' }}
+                        <span
+                          class="text-gray-50 light:text-gray-800 hover:text-sky-500 transition-colors"
+                        >
+                          {{ item.label }}
+                        </span>
+                        {{ '}' }}
+                      </span>
+                    </a>
+                  </span>
+                </p>
               </Shadow>
             </template>
           </Spoiler>
@@ -325,6 +367,7 @@
   import { useRoute, useRouter } from 'vue-router';
   import { useTheme } from '~/shared/composables';
   import Bio from './ui/Bio.vue';
+  import { technologies } from '~/shared/data/technologies';
 
   const currentDate = computed(() =>
     new Date().toLocaleDateString('ru-RU', {
@@ -356,6 +399,10 @@
     } else {
       openedProject.value = null;
     }
+  };
+
+  const getTechnologies = (keys: string[]) => {
+    return technologies.filter((i) => keys.includes(i.key));
   };
 
   const toggleHrMode = () => {

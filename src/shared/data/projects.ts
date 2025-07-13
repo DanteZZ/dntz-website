@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import type { TechnologyKey } from './technologies';
 
 type Project = {
   title: string;
@@ -9,6 +10,7 @@ type Project = {
   architecture: string;
   achievments?: string[];
   period: [string, string];
+  technologies?: TechnologyKey[];
 };
 
 export const projects = ref<Project[]>([
@@ -17,6 +19,24 @@ export const projects = ref<Project[]>([
     period: ['Февраль 2025', 'Июнь 2025'],
     title:
       'Многоуровневая платформа для визуального проектирования и управления отчётами',
+    technologies: [
+      'ts',
+      'vite',
+      'vue3',
+      'sfc',
+      'tailwind',
+      'scss',
+      'axios',
+      'primevue',
+      'tiptap',
+      'vueuse',
+      'zod',
+      'i18n',
+      'vue-sfc-loader',
+      'nexe',
+      'codemirror',
+      'chartjs',
+    ],
     contribution: [
       'Разработал масштабируемое SPA-приложение на Vue 3 с использованием Vite, TypeScript, TailwindCSS, Vue, PrimeVue.',
       'Реализовал архитектуру плагинов для UI: поддержка динамического подключения datasource-адаптеров, тем оформления, расширений для визуального конструктора отчётов. ',
@@ -38,6 +58,20 @@ export const projects = ref<Project[]>([
     nda: true,
     period: ['Ноябрь 2024', 'Февраль 2025'],
     title: 'Перенос фармацептического маркетплейса с 1С.Битрикс на SSR',
+    technologies: [
+      'ts',
+      'vite',
+      'lite-ssr',
+      'vue3',
+      'sfc',
+      'scss',
+      'axios',
+      'vueuse',
+      'bitrix',
+      'yandexmaps',
+      'php',
+      'vuelidate',
+    ],
     contribution: [
       'Реализация бесшовной интеграции SSR страниц с 1С Битрикс, а в последствии, дальнейший перенос всего функционала на LSSR',
       'Перенос текущего функционала сайта на SSR',
@@ -56,6 +90,18 @@ export const projects = ref<Project[]>([
     nda: false,
     period: ['Октябрь 2024', 'Ноябрь 2024'],
     title: 'LiteSSR. Разработка универсального плагина Vite для реализации SSR',
+    technologies: [
+      'ts',
+      'vite',
+      'esbuild',
+      'chalk',
+      'express',
+      'rollup',
+      'vue3',
+      'react',
+      'axios',
+      'modules',
+    ],
     contribution: [
       'Разработка плагина для Vite',
       'Реализация универсального API для работы с SSR и регистрации генераторов страниц',
@@ -76,6 +122,20 @@ export const projects = ref<Project[]>([
     nda: false,
     period: ['Июнь 2024', 'Октябрь 2024'],
     title: 'Веб-сайт и конструктор страниц сайта компании ЭФКО',
+    technologies: [
+      'ts',
+      'vite',
+      'vue3',
+      'nuxt3',
+      'sfc',
+      'tailwind',
+      'scss',
+      'axios',
+      'daisy',
+      'vueuse',
+      'zod',
+      'i18n',
+    ],
     contribution: [
       'Разработка визуального конструктора страниц на базе GrapesJS с шаблонизацией Vue',
       'Разработка генератора роутинга, и визуальной части страниц',
@@ -94,6 +154,19 @@ export const projects = ref<Project[]>([
     nda: true,
     period: ['Апрель 2024', 'Июнь 2024'],
     title: 'Модернизация ЛК и МП страховой компании',
+    technologies: [
+      'ts',
+      'vite',
+      'vue2',
+      'vue3',
+      'sfc',
+      'scss',
+      'axios',
+      'vueuse',
+      'vee-validate',
+      'chartjs',
+      'cordova',
+    ],
     contribution: [
       'Поддержка существующей кодовой базы',
       'Разработка нового функционала',
