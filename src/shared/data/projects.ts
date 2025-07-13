@@ -134,6 +134,7 @@ export const projects = ref<Project[]>([
       'daisy',
       'vueuse',
       'zod',
+      'pinia',
       'i18n',
     ],
     contribution: [
@@ -164,6 +165,7 @@ export const projects = ref<Project[]>([
       'axios',
       'vueuse',
       'vee-validate',
+      'pinia',
       'chartjs',
       'cordova',
     ],
@@ -185,6 +187,21 @@ export const projects = ref<Project[]>([
     title: 'In-DAP (PoC проект)',
     description:
       'Разработка отечественного узконаправленного аналога Grafana/Zabbix',
+    technologies: [
+      'ts',
+      'vite',
+      'vue3',
+      'sfc',
+      'vue-sfc-loader',
+      'scss',
+      'graphql',
+      'vueuse',
+      'antdv',
+      'codemirror',
+      'echarts',
+      'zod',
+      'pinia',
+    ],
     contribution: [
       'Разработка PoC системы мониторинга и сбора метрик',
       'Создание системы визуализации данных',
