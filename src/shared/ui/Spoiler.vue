@@ -31,7 +31,13 @@
       :none="props.none"
     >
       <button @click="onToggle" class="outline-0 text-gray-500 cursor-pointer">
-        [ {{ opened ? 'Свернуть' : 'Развернуть' }} ]
+        [
+        {{
+          opened
+            ? props.expandedLabel ?? 'Свернуть'
+            : props.collapsedLabel ?? 'Развернуть'
+        }}
+        ]
       </button>
     </Divider>
     <Divider v-else :double="props.double" :none="props.none" />
@@ -47,6 +53,8 @@
       full?: boolean;
       double?: boolean;
       none?: boolean;
+      collapsedLabel?: string;
+      expandedLabel?: string;
     }>(),
     {
       height: 200,
@@ -58,9 +66,27 @@
 
   const maxHeight = ref<string>(`${props.height}px`);
 
-  const onToggle = () => {
-    opened.value = !opened.value;
+  const setOpened = (value: boolean) => {
+    if (props.alwaysOpened) {
+      return;
+    }
+    if (opened.value === value) {
+      return;
+    }
+    opened.value = value;
     emit('toggle', opened.value);
+  };
+
+  const onToggle = () => {
+    setOpened(!opened.value);
+  };
+
+  const open = () => {
+    setOpened(true);
+  };
+
+  const close = () => {
+    setOpened(false);
   };
 
   watch(
@@ -84,5 +110,7 @@
 
   defineExpose({
     opened,
+    open,
+    close,
   });
 </script>

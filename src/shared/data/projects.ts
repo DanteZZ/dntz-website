@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import type { TechnologyKey } from './technologies';
 
-type Project = {
+type BaseProject = {
   title: string;
   nda?: boolean;
   description?: string;
@@ -12,6 +12,14 @@ type Project = {
   period: [string, string];
   technologies?: TechnologyKey[];
 };
+
+type OpenSourceProject = Omit<BaseProject, 'nda'> & {
+  npm?: string;
+  github?: string;
+};
+
+export type Project = BaseProject;
+export type OpenSource = OpenSourceProject;
 
 export const projects = ref<Project[]>([
   {
@@ -180,6 +188,24 @@ export const projects = ref<Project[]>([
       'Удалось провести рефакторинг всей проблемной кодовой базы, оптимизировать работу веб-сайта, разделить пере-используемый функционал в отдельные модули, за короткий срок',
     ],
     architecture: 'Перенос (изначально) модульной системы на FSD',
+  },
+  {
+    nda: true,
+    period: ['Октябрь 2023', 'Декабрь 2023'],
+    title: 'Доработка логистического сервиса',
+    technologies: ['ts', 'vue3', 'konva', 'sass', 'axios'],
+    contribution: [
+      'Разработал интерактивный компоновщик трюмов траулеров и транспортных судов на базе Konva.js с drag&drop и слоями.',
+      'Реализовал расчёт весовых ограничений по слоям и моментальную валидацию перегруза с визуальными подсказками.',
+      'Добавил сценарии погрузки/выгрузки с симуляцией очередности, фиксацией точек доступа и предупреждениями о нарушениях техники безопасности.',
+      'Интегрировал модуль с API логистики и подготовил экспорт планов рейса в существующие отчётные формы.',
+    ],
+    methodology: 'Agile/Scrum, 2х-недельные спринты',
+    achievments: [
+      'Сократил время подготовки рейса на ~35% благодаря визуализации и автоматическим расчётам вместимости.',
+    ],
+    architecture:
+      'Vue 3 SPA с Konva.js, интегрированная в логистическую платформу',
   },
   {
     nda: false,
@@ -367,5 +393,134 @@ export const projects = ref<Project[]>([
     ],
     methodology: 'Waterfall',
     architecture: 'Монолитная',
+  },
+]);
+
+export const opensourceProjects = ref<OpenSource[]>([
+  {
+    period: ['Февраль 2024', 'по наст. время'],
+    title: 'LiteSSR',
+    description:
+      'Набор инструментов для SSR и SSG на базе Vite с поддержкой модульной архитектуры и расширений.',
+    contribution: [
+      'Разработал ядро LiteSSR и систему API для декларативной регистрации генераторов и плагинов.',
+      'Сконструировал пайплайн сборки с динамическим подключением middleware, кешем данных и прокси-слоем.',
+      'Поддерживаю документацию, релизы и roadmap; веду коммуникацию с OSS-сообществом.',
+    ],
+    achievments: [
+      'Проект стабильно используется небольшими продуктами и pet-проектами для миграции SPA → SSR.',
+      'Получил вклад контрибьюторов: pull-request’ы с новыми плагинами и улучшением документации.',
+    ],
+    methodology: 'Agile/Kanban',
+    architecture: 'Workspace-монорепозиторий (ядро + плагины)',
+    technologies: [
+      'ts',
+      'vite',
+      'esbuild',
+      'rollup',
+      'express',
+      'axios',
+      'vue3',
+      'react',
+      'chalk',
+    ],
+    github: 'https://github.com/DanteZZ/lite-ssr',
+    npm: 'https://www.npmjs.com/package/lite-ssr',
+  },
+  {
+    period: ['Март 2024', 'по наст. время'],
+    title: 'LiteSSR Vue Renderer',
+    description:
+      'Отдельный генератор Vue3 для LiteSSR с готовыми плагинами и best-practice конфигурацией.',
+    contribution: [
+      'Реализовал совместимость с Composition API, маршрутизацией и meta-рендерингом через Unhead.',
+      'Написал набор плагинов (@lite-ssr/vue-unhead и др.) для быстрой интеграции в существующие SPA.',
+      'Настроил тесты и пример приложения, чтобы облегчить вход новичкам и уменьшить количество вопросов.',
+    ],
+    methodology: 'Kanban',
+    architecture: 'Workspace-пакет, интегрированный с LiteSSR',
+    technologies: ['ts', 'vue3', 'vite', 'sfc', 'tailwind', 'axios'],
+    github: 'https://github.com/DanteZZ/lite-ssr/tree/main/packages/vue',
+    npm: 'https://www.npmjs.com/package/@lite-ssr/vue',
+  },
+  {
+    period: ['Июнь 2023', 'по наст. время'],
+    title: 'NW.js Advanced Builder',
+    description:
+      'Кросс-платформенный сборщик standalone-приложений на базе NW.js c единым CLI.',
+    contribution: [
+      'Создал CLI с поддержкой Windows/Linux/macOS, упаковкой ресурсов и автоматическим обновлением manifest.',
+      'Реализовал скрипты для сборки arm64/x64, подписи, инклюда нативных модулей и интеграции CI/CD.',
+      'Поддерживаю issue-трекер, документацию и примеры шаблонов для старта проектов.',
+    ],
+    methodology: 'Kanban',
+    architecture: 'Node CLI + шаблоны проектов',
+    technologies: ['ts', 'node', 'nwjs', 'electron', 'chalk'],
+    github: 'https://github.com/DanteZZ/nw-advenced-builder',
+    npm: 'https://www.npmjs.com/package/nw-advenced-builder',
+  },
+  {
+    period: ['Август 2022', 'по наст. время'],
+    title: 'Open Game Engine',
+    description:
+      'TypeScript-first игровой движок на Canvas с модульным API, вдохновлённый GameMaker и Unity.',
+    contribution: [
+      'Спроектировал ECS-ядро, систему компонентов и событий для 2D-игр.',
+      'Реализовал конвейер загрузки ассетов, спрайтов, анимаций и базового редактора сцен.',
+      'Пишу документацию, примеры и демо-проекты; поддерживаю выпуск обновлений через npm.',
+    ],
+    methodology: 'Kanban',
+    architecture: 'Monorepo (ядро + вспомогательные модули)',
+    technologies: ['ts', 'vite', 'rollup', 'canvas', 'axios'],
+    github: 'https://github.com/DanteZZ/oge-ts',
+    npm: 'https://www.npmjs.com/package/oge-ts',
+  },
+  {
+    period: ['Январь 2024', 'по наст. время'],
+    title: 'Nu11Net Client',
+    description:
+      'Игровой клиент Nu11Net — десктопная терминальная игра-симулятор «хакера» с полноценной сетевой песочницей.',
+    contribution: [
+      'Спроектировал игровой UX в духе ретро-операционной системы: терминал, файловая система, сетевые устройства и переносные носители.',
+      'Построил NW.js-оболочку с автоматической сборкой и деплоем под Linux, интегрировал игровой движок OGE и систему сценариев.',
+      'Реализовал локальную эмуляцию сети (DHCP, DNS, роутеры), WebSocket-взаимодействие с сервером и механики PvP/кооперативного взлома.',
+      'Настроил pipeline релизов (webpack, Jenkins, .deb-пакеты) и nightly-сборки.',
+    ],
+    methodology: 'Agile/Kanban',
+    architecture: 'NW.js desktop-игра (Vue 2 + TypeScript)',
+    technologies: [
+      'ts',
+      'vue2',
+      'nwjs',
+      'webpack',
+      'canvas',
+      'socketio',
+      'lodash',
+    ],
+    github: 'https://github.com/mtrofimov/nu11net-client',
+  },
+  {
+    period: ['Декабрь 2023', 'по наст. время'],
+    title: 'Nu11Net Server',
+    description:
+      'Игровой сервер Nu11Net: ядро симуляции виртуальных машин, сетевых событий и кооперативных сценариев.',
+    contribution: [
+      'Спроектировал модульную систему: управление устройствами, «интернет-провайдер», обработку пакетов и PvP-события.',
+      'Реализовал WebSocket-протокол поверх `ws`, эмуляцию DHCP/DNS и обработку сетевых пакетов с сохранением состояния.',
+      'Создал терминальную админ-панель на React Blessed для лайв-мониторинга и управления кластерами.',
+      'Поддерживаю CI-пайплайн релизов, резервные копии sqlite и документацию игровых сценариев.',
+    ],
+    methodology: 'Agile/Kanban',
+    architecture: 'Node.js сервис с модульными сервисами и терминальным UI',
+    technologies: [
+      'node',
+      'ws',
+      'sqlite',
+      'react',
+      'react-blessed',
+      'lodash',
+      'chalk',
+    ],
+    github: 'https://github.com/mtrofimov/nu11net-server',
   },
 ]);
